@@ -3,18 +3,18 @@
 #include <iostream>
 #include <functional>
 #include <list>
-#include "../../gtest/googletest/include/gtest/gtest.h"
-#include "../../include/cppoptlib/meta.h"
-#include "../../include/cppoptlib/boundedproblem.h"
-#include "../../include/cppoptlib/solver/gradientdescentsolver.h"
-#include "../../include/cppoptlib/solver/conjugatedgradientdescentsolver.h"
-#include "../../include/cppoptlib/solver/newtondescentsolver.h"
-#include "../../include/cppoptlib/solver/bfgssolver.h"
-#include "../../include/cppoptlib/solver/lbfgssolver.h"
-#include "../../include/cppoptlib/solver/lbfgsbsolver.h"
-#include "../../include/cppoptlib/solver/cmaessolver.h"
-#include "../../include/cppoptlib/solver/cmaesbsolver.h"
-#include "../../include/cppoptlib/solver/neldermeadsolver.h"
+#include "gtest/gtest.h"
+#include "include/cppoptlib/meta.h"
+#include "include/cppoptlib/boundedproblem.h"
+#include "include/cppoptlib/solver/gradientdescentsolver.h"
+#include "include/cppoptlib/solver/conjugatedgradientdescentsolver.h"
+#include "include/cppoptlib/solver/newtondescentsolver.h"
+#include "include/cppoptlib/solver/bfgssolver.h"
+#include "include/cppoptlib/solver/lbfgssolver.h"
+#include "include/cppoptlib/solver/lbfgsbsolver.h"
+#include "include/cppoptlib/solver/cmaessolver.h"
+#include "include/cppoptlib/solver/cmaesbsolver.h"
+#include "include/cppoptlib/solver/neldermeadsolver.h"
 #define PRECISION 1e-4
 using namespace cppoptlib;
 
@@ -142,6 +142,7 @@ TEST(CMAesTest, RosenbrockNearValue)                               { SOLVE_PROBL
 TYPED_TEST(NelderMeadTest, RosenbrockFarValue)                     { SOLVE_PROBLEM(cppoptlib::NelderMeadSolver,RosenbrockValue, 15.0, 8.0, 0.0) }
 TYPED_TEST(NelderMeadTest, RosenbrockNearValue)                    { SOLVE_PROBLEM(cppoptlib::NelderMeadSolver,RosenbrockValue, -1.0, 2.0, 0.0) }
 TYPED_TEST(NelderMeadTest, RosenbrockMixValue)                     { SOLVE_PROBLEM(cppoptlib::NelderMeadSolver,RosenbrockValue, -1.2, 100.0, 0.0) }
+TYPED_TEST(NelderMeadTest, RosenbrockZeroValue)                    { SOLVE_PROBLEM(cppoptlib::NelderMeadSolver,RosenbrockValue, 0.0, 100.0, 0.0) }
 
 // gradient information ( Hessian for newton descent)
 TYPED_TEST(GradientDescentTest, RosenbrockFarGradient)             { SOLVE_PROBLEM(cppoptlib::GradientDescentSolver,RosenbrockGradient, 15.0, 8.0, 0.0) }
