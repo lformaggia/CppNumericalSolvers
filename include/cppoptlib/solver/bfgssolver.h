@@ -23,14 +23,14 @@ class BfgsSolver : public ISolver<ProblemType, 1> {
         TVector grad(DIM);
         TVector x_old = x0;
         this->m_current.reset();
+        objFunc.gradient(x0, grad);
         do {
-            objFunc.gradient(x0, grad);
             TVector searchDir = -1 * H * grad;
             // check "positive definite"
             Scalar phi = grad.dot(searchDir);
 
             // positive definit ?
-            if (phi > 0) {
+            if ((phi > 0) || (phi != phi)) {
                 // no, we reset the hessian approximation
                 H = THessian::Identity(DIM, DIM);
                 searchDir = -1 * grad;
@@ -45,7 +45,7 @@ class BfgsSolver : public ISolver<ProblemType, 1> {
             TVector y = grad - grad_old;
 
             const Scalar rho = 1.0 / y.dot(s);
-            H = H - rho * (s * (y.transpose() * H) + (H * y) * s.transpose()) + rho * rho * (y.dot(H * y) + 1.0 / rho)
+            H = H - rho * (s * (y.transpose() * H) + (H * y) * s.transpose()) + rho * (rho * y.dot(H * y) + 1.0)
                 * (s * s.transpose());
             // std::cout << "iter: "<<iter<< " f = " <<  objFunc.value(x0) << " ||g||_inf "<<gradNorm   << std::endl;
 
