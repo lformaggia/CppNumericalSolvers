@@ -1,7 +1,7 @@
 CppOptimizationLibrary (Support for TensorFlow)
 =================================================================
 
-[![Build Status](https://api.travis-ci.org/PatWie/CppNumericalSolvers.svg?branch=master)](http://travis-ci.org/PatWie/CppNumericalSolvers)
+[![Build Status](http://ci.patwie.com/api/badges/PatWie/CppNumericalSolvers/status.svg)](http://ci.patwie.com/PatWie/CppNumericalSolvers)
 
 A *header-only* library with bindings to **C++**, **[TensorFlow](https://www.tensorflow.org/)** and **Matlab**.
 
@@ -21,7 +21,7 @@ All solvers are written scratch using Eigen, which means they are very easy to u
     int main(int argc, char const *argv[]) {
         Rosenbrock f;
         Vector<double> x(2); x << -1, 2;
-        BfgsSolver<double> solver;
+        BfgsSolver<Rosenbrock> solver;
         solver.minimize(f, x);
         std::cout << "argmin      " << x.transpose() << std::endl;
         std::cout << "f in argmin " << f(x) << std::endl;
@@ -213,3 +213,24 @@ Make sure that `python lint.py` does not display any errors and check if travis 
 [bazel]: https://bazel.build/
 [matlab]: http://www.mathworks.de/products/matlab/
 [tensorflow]: https://www.tensorflow.org/
+
+# References
+
+**L-BFGS-B**: A LIMITED MEMORY ALGORITHM FOR BOUND CONSTRAINED OPTIMIZATION
+*Richard H. Byrd, Peihuang Lu, Jorge Nocedal and Ciyou Zhu*
+
+**L-BFGS**: Numerical Optimization, 2nd ed. New York: Springer
+*J. Nocedal and S. J. Wright*
+
+# Citing this implementation
+
+I see some interests in citing this implementation. Please use the following bibtex entry, if you consider to cite this implementation:
+
+```bibtex
+@misc{wieschollek2016cppoptimizationlibrary,
+  title={CppOptimizationLibrary},
+  author={Wieschollek, Patrick},
+  year={2016},
+  howpublished={\url{https://github.com/PatWie/CppNumericalSolvers}},
+}
+```
