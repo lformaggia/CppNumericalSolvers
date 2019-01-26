@@ -6,4 +6,10 @@
 #
 include ../../../Makefile.inc
 install:
-	cp -rv ./include/cppoptlib $(PACS_INC_DIR)/
+	install -d -v $(PACS_INC_DIR)/cppoptlib
+	install -d -v $(PACS_INC_DIR)/cppoptlib/solver
+	install -d -v $(PACS_INC_DIR)/cppoptlib/linesearch
+
+	install  -p -v -t $(PACS_INC_DIR)/cppoptlib include/cppoptlib/*.h
+	install  -p -v -t $(PACS_INC_DIR)/cppoptlib/solver include/cppoptlib/solver/*.h
+	install  -p -v -t $(PACS_INC_DIR)/cppoptlib/linesearch include/cppoptlib/linesearch/*.h
