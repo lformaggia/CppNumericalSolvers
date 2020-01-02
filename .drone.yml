@@ -1,17 +1,27 @@
 ---
 kind: pipeline
-name: default
+name: Build
+
+platform:
+  os: linux
+  arch: amd64
 
 steps:
-- name: build
-  image: cppnumericalsolver_dynamic
+- name: lint
   pull: never
+  image: patwie/cppnumericalsolvers
+  commands:
+  - python lint.py
+
+- name: build
+  pull: never
+  image: patwie/cppnumericalsolvers
   commands:
   - /root/bin/bazel run verify
-  - python lint.py
+
 
 ---
 kind: signature
-hmac: 98eb2e425769b09a9bbc04ab65c7213039bd19695fcaace53a8271e650083335
+hmac: a370fbc7962c2d6dd6fc520f6492046228942cf9529a33e53b1cda59e6ad3281
 
 ...
