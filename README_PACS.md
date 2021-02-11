@@ -14,3 +14,6 @@ It is a header-only library. To make it available to other examples of the PACS 
     make install
 
 If you want to try some of the examples, follow what is written in the `README.md` file.
+
+#What do I learn here#
+-To use a third party library to perform numerical computations. You do not need to reinvent the weel, try to build you code leveraging existing available tools.
